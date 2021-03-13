@@ -25,7 +25,7 @@ def autorApi(request, id=0):
 
     elif(request.method == 'PUT'):
         autor_data = JSONParser().parse(request)
-        autor = Autor.objects.get(AutorId=autor_data['id'])
+        autor = Autor.objects.get(autorId=autor_data['autorId'])
         autor_serializer = AutorSerializer(autor, data=autor_data)
         if autor_serializer.is_valid():
             autor_serializer.save()
@@ -33,6 +33,6 @@ def autorApi(request, id=0):
         return JsonResponse('Fallo al actualizar', safe = False)
 
     elif request.method == 'DELETE':
-        autor = Autor.objects.get(AutorId=id)
+        autor = Autor.objects.get(autorId=id)
         autor.delete()
         return JsonResponse('Borrado correctamente', safe = False)

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'HistoriaApp.apps.HistoriaappConfig',
-    'rest_framework'
+    'rest_framework',
+    'django_extensions'
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

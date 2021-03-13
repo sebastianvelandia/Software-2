@@ -4,7 +4,7 @@ from HistoriaApp.models import Autor, Libro, Calificacion, Reseña
 class AutorSerializer(serializers.ModelSerializer):
     class Meta:
         model=Autor
-        fields =('nombre')
+        fields =('autorId','nombre',)
 
 class LibroSerializer(serializers.ModelSerializer):
     class Meta:
