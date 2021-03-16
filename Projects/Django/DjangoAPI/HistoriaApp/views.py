@@ -9,12 +9,13 @@ from HistoriaApp.serializers import AutorSerializer, LibroSerializer, ReseñaSer
 
 @csrf_exempt
 def autorApi(request, id=0):
+    #Obtener cada autor
     if(request.method == 'GET'):
         autores = Autor.objects.all()
         autores_serializer = AutorSerializer(autores, many = True) 
         print("GET")
         return JsonResponse(autores_serializer.data, safe = False)
-    
+    #Agregar autor
     elif(request.method == 'POST'):
         autor_data = JSONParser().parse(request)
         autor_serializer = AutorSerializer(data = autor_data)
@@ -22,7 +23,7 @@ def autorApi(request, id=0):
             autor_serializer.save()
             return JsonResponse('Agregado correctamente', safe =False)
         return JsonResponse('Fallo al agregar', safe = False)
-
+    #actualiza autor
     elif(request.method == 'PUT'):
         autor_data = JSONParser().parse(request)
         autor = Autor.objects.get(autorId=autor_data['autorId'])
@@ -31,8 +32,40 @@ def autorApi(request, id=0):
             autor_serializer.save()
             return JsonResponse('actualizado correctamente', safe =False)
         return JsonResponse('Fallo al actualizar', safe = False)
-
+    #elimina autor
     elif request.method == 'DELETE':
         autor = Autor.objects.get(autorId=id)
         autor.delete()
         return JsonResponse('Borrado correctamente', safe = False)
+
+@csrf_exempt
+def libroApi(request, id=0):
+    if(request.method == 'GET'):
+        libros = Libro.objects.all()
+        libros_serializer = LibroSerializer(libros, many = True) 
+        print("GET")
+        return JsonResponse(libros_serializer.data, safe = False)
+    
+    elif(request.method == 'POST'):
+        libro_data = JSONParser().parse(request)
+        libro_serializer = LibroSerializer(data = libro_data)
+        print(libro_data)
+        if libro_serializer.is_valid():
+            libro_serializer.save()
+            return JsonResponse('Agregado correctamente', safe =False)
+        return JsonResponse('Fallo al agregar', safe = False)
+
+    elif(request.method == 'PUT'):
+        libro_data = JSONParser().parse(request)
+        libro = Libro.objects.get(isbn=libro_data['isbn'])
+        libro_serializer = AutorSerializer(libro, data=libro_data)
+        if libro_serializer.is_valid():
+            libro_serializer.save()
+            return JsonResponse('Actualizado correctamente', safe =False)
+        return JsonResponse('Fallo al actualizar', safe = False)
+
+    elif request.method == 'DELETE':
+        libro = Libro.objects.get(libroId=id)
+        libro.delete()
+        return JsonResponse('Borrado correctamente', safe = False)
+
