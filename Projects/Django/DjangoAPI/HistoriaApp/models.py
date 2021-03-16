@@ -11,8 +11,8 @@ class Libro(models.Model):
     autores = models.ManyToManyField(Autor)
     titulo = models.CharField( max_length=100)
 
-class Reseña(models.Model):
-    reseñaId = models.AutoField(primary_key = True)
+class Resena(models.Model):
+    resenaId = models.AutoField(primary_key = True)
     libro = models.ForeignKey(Libro, on_delete = models.CASCADE)
     comentario = models.CharField( max_length = 300)
 

@@ -69,3 +69,33 @@ def libroApi(request, id=0):
         libro.delete()
         return JsonResponse('Borrado correctamente', safe = False)
 
+@csrf_exempt
+def reseñaApi(request, id=0):
+    if(request.method == 'GET'):
+        resenas = Reseña.objects.all()
+        resenas_serializer = ReseñaSerializer(resenas, many = True) 
+        print("GET")
+        return JsonResponse(resenas_serializer.data, safe = False)
+    
+    elif(request.method == 'POST'):
+        resena_data = JSONParser().parse(request)
+        resena_serializer = ReseñaSerializer(data = resena_data)
+        if resena_serializer.is_valid():
+            resena_serializer.save()
+            return JsonResponse('Agregado correctamente', safe =False)
+        return JsonResponse('Fallo al agregar', safe = False)
+
+    elif(request.method == 'PUT'):
+        resena_data = JSONParser().parse(request)
+        resena = Reseña.objects.get(reseñaId=resena_data['reseñaId'])
+        resena_serializer = AutorSerializer(resena, data=resena_data)
+        if resena_serializer.is_valid():
+            resena_serializer.save()
+            return JsonResponse('Actualizado correctamente', safe =False)
+        return JsonResponse('Fallo al actualizar', safe = False)
+
+    elif request.method == 'DELETE':
+        resena = Reseña.objects.get(reseñaId=id)
+        resena.delete()
+        return JsonResponse('Borrado correctamente', safe = False)
+
