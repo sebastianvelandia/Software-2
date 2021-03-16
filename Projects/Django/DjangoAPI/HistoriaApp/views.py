@@ -12,8 +12,7 @@ def autorApi(request, id=0):
     #Obtener cada autor
     if(request.method == 'GET'):
         autores = Autor.objects.all()
-        autores_serializer = AutorSerializer(autores, many = True) 
-        print("GET")
+        autores_serializer = AutorSerializer(autores, many = True)
         return JsonResponse(autores_serializer.data, safe = False)
     #Agregar autor
     elif(request.method == 'POST'):
@@ -43,7 +42,6 @@ def libroApi(request, id=0):
     if(request.method == 'GET'):
         libros = Libro.objects.all()
         libros_serializer = LibroSerializer(libros, many = True) 
-        print("GET")
         return JsonResponse(libros_serializer.data, safe = False)
     
     elif(request.method == 'POST'):
@@ -73,8 +71,7 @@ def libroApi(request, id=0):
 def reseñaApi(request, id=0):
     if(request.method == 'GET'):
         resenas = Reseña.objects.all()
-        resenas_serializer = ReseñaSerializer(resenas, many = True) 
-        print("GET")
+        resenas_serializer = ReseñaSerializer(resenas, many = True)
         return JsonResponse(resenas_serializer.data, safe = False)
     
     elif(request.method == 'POST'):
@@ -99,3 +96,32 @@ def reseñaApi(request, id=0):
         resena.delete()
         return JsonResponse('Borrado correctamente', safe = False)
 
+
+@csrf_exempt
+def calificacionApi(request, id=0):
+    if(request.method == 'GET'):
+        calificaciones = Calificacion.objects.all()
+        calificaciones_serializer = CalificacionSerializer(calificaciones, many = True)
+        return JsonResponse(calificaciones_serializer.data, safe = False)
+    
+    elif(request.method == 'POST'):
+        calificacion_data = JSONParser().parse(request)
+        calificacion_serializer = CalificacionSerializer(data = calificacion_data)
+        if calificacion_serializer.is_valid():
+            calificacion_serializer.save()
+            return JsonResponse('Agregado correctamente', safe =False)
+        return JsonResponse('Fallo al agregar', safe = False)
+
+    elif(request.method == 'PUT'):
+        calificacion_data = JSONParser().parse(request)
+        calificacion = Calificacion.objects.get(calificacionId=resena_data['calificacionId'])
+        calificacion_serializer = AutorSerializer(calificacion, data=calificacion_data)
+        if calificacion_serializer.is_valid():
+            calificacion_serializer.save()
+            return JsonResponse('Actualizado correctamente', safe =False)
+        return JsonResponse('Fallo al actualizar', safe = False)
+
+    elif request.method == 'DELETE':
+        calificacion = Calificacion.objects.get(calificacionId=id)
+        calificacion.delete()
+        return JsonResponse('Borrado correctamente', safe = False)
