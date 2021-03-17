@@ -11,8 +11,12 @@ from HistoriaApp.serializers import AutorSerializer, LibroSerializer, ReseñaSer
 def autorApi(request, id=0):
     #Obtener cada autor
     if(request.method == 'GET'):
-        autores = Autor.objects.all()
-        autores_serializer = AutorSerializer(autores, many = True)
+        if('name' in request.GET):
+            autores = Autor.objects.filter(nombre__contains=request.GET['name'])
+            autores_serializer = AutorSerializer(autores, many = True)
+        else:
+            autores = Autor.objects.all()  
+            autores_serializer = AutorSerializer(autores, many = True)  
         return JsonResponse(autores_serializer.data, safe = False)
     #Agregar autor
     elif(request.method == 'POST'):
@@ -41,7 +45,9 @@ def autorApi(request, id=0):
 def libroApi(request, id=0):
     if(request.method == 'GET'):
         libros = Libro.objects.all()
-        libros_serializer = LibroSerializer(libros, many = True) 
+            #if('titulo' in request.GET and 'autor' in request.GET):
+            #libros = Libro.objects.filter(titulo__contains=request.GET['titulo'])
+        libros_serializer = LibroSerializer(libros, many = True)
         return JsonResponse(libros_serializer.data, safe = False)
     
     elif(request.method == 'POST'):
@@ -100,7 +106,9 @@ def reseñaApi(request, id=0):
 @csrf_exempt
 def calificacionApi(request, id=0):
     if(request.method == 'GET'):
-        calificaciones = Calificacion.objects.all()
+        calificaciones = Calificacion.objects.all().select_related('libro')
+        for calificacion in calificaciones:
+            print(calificacion.libro.titulo)
         calificaciones_serializer = CalificacionSerializer(calificaciones, many = True)
         return JsonResponse(calificaciones_serializer.data, safe = False)
     
@@ -114,7 +122,7 @@ def calificacionApi(request, id=0):
 
     elif(request.method == 'PUT'):
         calificacion_data = JSONParser().parse(request)
-        calificacion = Calificacion.objects.get(calificacionId=resena_data['calificacionId'])
+        calificacion = Calificacion.objects.get(calificacionId=calificacion_data['calificacionId'])
         calificacion_serializer = AutorSerializer(calificacion, data=calificacion_data)
         if calificacion_serializer.is_valid():
             calificacion_serializer.save()

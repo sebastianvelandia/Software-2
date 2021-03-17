@@ -1,0 +1,25 @@
+
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th>ISBN</th>
+            <th>Título</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let dataItem of LibroList">
+            <td>{{dataItem.isbn}}</td>
+            <td>{{dataItem.titulo}}</td>
+            <td>
+                <button type= "button" class="btn btn-light mr-1">
+                    Reseña
+                </button>
+                <button type= "button" class ="btn btn-light mr-1">
+                    Calificación
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
