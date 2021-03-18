@@ -14,7 +14,6 @@ export class ShowLibroComponent implements OnInit {
 
   ModalTitle:string;
   ActivateResenaComp:boolean=false;
-  
   res:any;
 
   ngOnInit(): void {
@@ -22,10 +21,12 @@ export class ShowLibroComponent implements OnInit {
   }
 
   addClick(item){
+    console.log(item)
     this.res={
-      reseñaId: 0,
+    
+      resenaId: 0,
       comentario: "",
-      libro_id: item
+      libro: item
     }
     this.ModalTitle = "Añadir Reseña";
     this.ActivateResenaComp=true;

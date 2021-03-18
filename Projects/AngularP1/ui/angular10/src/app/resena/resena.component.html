@@ -1,4 +1,4 @@
-<div class="form-group row">
+<div class="form-froup row">
     <label class="col-sm-2 col-form-label">Comentario</label>
     <div class="input-group input-group-lg">
         
@@ -7,6 +7,7 @@
         placeholder="Ingrese su reseña">
     </div>
 </div>
-<button (click)="addResena()" *ngIf="res.resenaId==0" class ="btn btn-primary">
+<button (click)="addResena(res.libro)" *ngIf="res.resenaId==0" class ="btn btn-primary">
     Agregar
 </button>
+

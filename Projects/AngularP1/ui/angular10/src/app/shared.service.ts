@@ -16,7 +16,7 @@ readonly PhotoUrl = "http://127.0.0.1:8000/";
   }
 
   addResena(val:any){
-    return this.http.post(this.APIUrl+'/resena', val);
+    return this.http.post(this.APIUrl+'/resena/', val);
   }
 
   deleteLibro(val:any){

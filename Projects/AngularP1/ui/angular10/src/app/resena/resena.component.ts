@@ -13,18 +13,20 @@ export class ResenaComponent implements OnInit {
   @Input() res:any
   resenaId:string
   comentario:string
-  libro_id:any
+  libro:any
 
 
   ngOnInit(): void {
     this.resenaId =this.res.resenaId;
     this.comentario = this.res.comentario;
-    this.libro_id = this.libro_id;
+    this.libro = this.libro;
   }
-  addResena(){
-    var val={resenaId:this.resenaId,
-              comentario:this.comentario,
-              libro_id:this.libro_id};
+  addResena(libro){
+
+    console.log(libro)
+    var val={libro:libro,
+              comentario:this.comentario
+              };
               this.service.addResena(val).subscribe(res=>{
                 alert(res.toString());
               });
