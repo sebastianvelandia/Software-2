@@ -14,6 +14,8 @@ export class ResenaComponent implements OnInit {
   resenaId:string
   comentario:string
   libro:any
+  currentRate:number=3;
+  cal:any
 
 
   ngOnInit(): void {
@@ -30,5 +32,14 @@ export class ResenaComponent implements OnInit {
               this.service.addResena(val).subscribe(res=>{
                 alert(res.toString());
               });
+  }
+  addCalificacion(libro){
+
+    var val={libro:libro,
+            calificacion:this.currentRate
+            };
+            this.service.addCalificacion(val).subscribe(val=>{
+            alert(val.toString)
+    })
   }
 }

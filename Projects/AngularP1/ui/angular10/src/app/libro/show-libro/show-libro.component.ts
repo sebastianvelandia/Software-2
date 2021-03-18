@@ -17,6 +17,8 @@ export class ShowLibroComponent implements OnInit {
   res:any;
   isbn:string
 
+
+
   ngOnInit(): void {
     this.refreshLibroList();
   }
@@ -30,6 +32,16 @@ export class ShowLibroComponent implements OnInit {
     }
     this.ModalTitle = "Añadir Reseña";
     this.ActivateResenaComp=true;
+  }
+
+  addCalificacion(item){
+    this.res={
+      resenaId : 1,
+      comentario:"",
+      libro:item
+    }
+    this.ModalTitle="Añadir Calificacion"
+    this.ActivateResenaComp=true
   }
 
   closeClick(){

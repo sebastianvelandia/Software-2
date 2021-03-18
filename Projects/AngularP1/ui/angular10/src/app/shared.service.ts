@@ -18,6 +18,10 @@ readonly PhotoUrl = "http://127.0.0.1:8000/";
     return this.http.get<any[]>(this.APIUrl+'/libro?isbn='+val);
   }
 
+  addCalificacion(val:any){
+    return this.http.post(this.APIUrl+'/calificacion/',val)
+  }
+
   addResena(val:any){
     return this.http.post(this.APIUrl+'/resena/', val);
   }

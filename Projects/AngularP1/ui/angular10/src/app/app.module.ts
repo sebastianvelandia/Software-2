@@ -12,7 +12,9 @@ import { SharedService } from './shared.service';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ResenaLibroComponent } from './libro/resena-libro/resena-libro.component';
-import { ResenaComponent } from './resena/resena.component'
+import { ResenaComponent } from './resena/resena.component';
+import { CalificaionComponent } from './calificaion/calificaion.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -22,14 +24,16 @@ import { ResenaComponent } from './resena/resena.component'
     LibroComponent,
     ShowLibroComponent,
     ResenaLibroComponent,
-    ResenaComponent
+    ResenaComponent,
+    CalificaionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

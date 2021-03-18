@@ -1,4 +1,4 @@
-<div class="form-froup row">
+<div *ngIf="res.resenaId == 0"class="form-froup row">
     <label class="col-sm-2 col-form-label">Comentario</label>
     <div class="input-group input-group-lg">
         
@@ -7,7 +7,17 @@
         placeholder="Ingrese su reseña">
     </div>
 </div>
+
+<div *ngIf="res.resenaId != 0">
+    <label class="col-sm-2 col-form-label">Comentario</label>
+    <div style="font-size:x-large; color:red;" class="col-auto p-5 text-center">
+        <ngb-rating [max]="5" [(rate)]="currentRate" [readonly]="false"></ngb-rating>
+    </div>    
+</div>
+<br>
 <button (click)="addResena(res.libro)" *ngIf="res.resenaId==0" class ="btn btn-primary">
     Agregar
 </button>
-
+<button (click)="addCalificacion(res.libro)" *ngIf="res.resenaId!=0" class ="btn btn-primary">
+    Votar
+</button>
