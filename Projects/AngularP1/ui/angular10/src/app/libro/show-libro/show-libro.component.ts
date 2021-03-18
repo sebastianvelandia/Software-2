@@ -12,8 +12,27 @@ export class ShowLibroComponent implements OnInit {
 
   LibroList:any=[];
 
+  ModalTitle:string;
+  ActivateResenaComp:boolean=false;
+  
+  res:any;
+
   ngOnInit(): void {
     this.refreshLibroList();
+  }
+
+  addClick(item){
+    this.res={
+      reseñaId: 0,
+      comentario: "",
+      libro_id: item
+    }
+    this.ModalTitle = "Añadir Reseña";
+    this.ActivateResenaComp=true;
+  }
+
+  closeClick(){
+    this.ActivateResenaComp=false
   }
 
   refreshLibroList(){

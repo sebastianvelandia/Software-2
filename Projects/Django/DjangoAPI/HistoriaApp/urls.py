@@ -8,8 +8,8 @@ urlpatterns = [
     url(r'^libro/$',views.libroApi),
     url(r'^libro/([0-9]+)$',views.libroApi),
 
-    url(r'^resena/$',views.reseñaApi),
-    url(r'^resena/([0-9]+)$',views.reseñaApi),
+    url(r'^resena/$',views.resenaApi),
+    url(r'^resena/([0-9]+)$',views.resenaApi),
 
     url(r'^calificacion/$',views.calificacionApi),
     url(r'^calificacion/([0-9]+)$',views.calificacionApi)

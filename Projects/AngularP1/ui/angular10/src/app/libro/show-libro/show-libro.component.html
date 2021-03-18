@@ -1,3 +1,18 @@
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    (click)="closeClick()">
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-resena [res]="res" *ngIf="ActivateResenaComp"></app-resena>
+            </div>
+        </div>
+    </div>
+</div>
 
 <table class = "table table-striped">
     <thead>
@@ -12,10 +27,16 @@
             <td>{{dataItem.isbn}}</td>
             <td>{{dataItem.titulo}}</td>
             <td>
-                <button type= "button" class="btn btn-light mr-1">
+<!--               <button type= "button" class="btn btn-light mr-1">
                     Reseña
                 </button>
-                <button type= "button" class ="btn btn-light mr-1">
+ -->               <button type="button" class="btn btn-primary float-right m-2"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    (click) ="addClick(dataItem.isbn)"
+                    data-backdrop="static" data-keyboard="false">
+                    Añadir reseña
+                </button>
+                      <button type= "button" class ="btn btn-light mr-1">
                     Calificación
                 </button>
             </td>

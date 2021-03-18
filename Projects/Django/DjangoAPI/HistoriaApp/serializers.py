@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from HistoriaApp.models import Autor, Libro, Calificacion, Reseña
+from HistoriaApp.models import Autor, Libro, Calificacion, Resena
 
 class AutorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -11,9 +11,9 @@ class LibroSerializer(serializers.ModelSerializer):
         model= Libro
         fields=('isbn','autores','titulo')
 
-class ReseñaSerializer(serializers.ModelSerializer):
+class ResenaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Reseña
+        model = Resena
         fields = ('libro', 'comentario')
 
 class CalificacionSerializer(serializers.ModelSerializer):

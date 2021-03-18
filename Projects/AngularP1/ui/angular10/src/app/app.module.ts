@@ -11,7 +11,8 @@ import { SharedService } from './shared.service';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ResenaLibroComponent } from './libro/resena-libro/resena-libro.component'
+import { ResenaLibroComponent } from './libro/resena-libro/resena-libro.component';
+import { ResenaComponent } from './resena/resena.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ResenaLibroComponent } from './libro/resena-libro/resena-libro.componen
     ShowAutorComponent,
     LibroComponent,
     ShowLibroComponent,
-    ResenaLibroComponent
+    ResenaLibroComponent,
+    ResenaComponent
   ],
   imports: [
     BrowserModule,
