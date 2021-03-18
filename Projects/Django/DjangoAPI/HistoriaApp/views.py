@@ -44,9 +44,10 @@ def autorApi(request, id=0):
 @csrf_exempt
 def libroApi(request, id=0):
     if(request.method == 'GET'):
-        libros = Libro.objects.all()
-            #if('titulo' in request.GET and 'autor' in request.GET):
-            #libros = Libro.objects.filter(titulo__contains=request.GET['titulo'])
+        if('isbn' in request.GET):
+            libros = Libro.objects.filter(isbn=request.GET['isbn'])
+        else:
+            libros = Libro.objects.all()
         libros_serializer = LibroSerializer(libros, many = True)
         return JsonResponse(libros_serializer.data, safe = False)
     

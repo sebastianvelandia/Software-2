@@ -19,11 +19,11 @@ export class ResenaComponent implements OnInit {
   ngOnInit(): void {
     this.resenaId =this.res.resenaId;
     this.comentario = this.res.comentario;
-    this.libro = this.libro;
+    this.libro = this.res.libro;
   }
   addResena(libro){
 
-    console.log(libro)
+    console.log(this.libro)
     var val={libro:libro,
               comentario:this.comentario
               };

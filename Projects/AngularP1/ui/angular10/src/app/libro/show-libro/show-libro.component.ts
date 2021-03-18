@@ -15,13 +15,13 @@ export class ShowLibroComponent implements OnInit {
   ModalTitle:string;
   ActivateResenaComp:boolean=false;
   res:any;
+  isbn:string
 
   ngOnInit(): void {
     this.refreshLibroList();
   }
 
   addClick(item){
-    console.log(item)
     this.res={
     
       resenaId: 0,
@@ -34,6 +34,12 @@ export class ShowLibroComponent implements OnInit {
 
   closeClick(){
     this.ActivateResenaComp=false
+  }
+
+  buscarLibro(){
+    this.service.getLibroIsbn(this.isbn).subscribe(data=>{
+      this.LibroList=data
+    });
   }
 
   refreshLibroList(){
